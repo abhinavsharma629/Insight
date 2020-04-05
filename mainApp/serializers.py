@@ -7,7 +7,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
       model=User  # what module you are going to serialize
-      fields= ('username','first_name', 'last_name')
+      fields= ('username', 'email', 'first_name', 'last_name', 'is_staff')
 
 
 class DocumentSerializer(serializers.ModelSerializer):
