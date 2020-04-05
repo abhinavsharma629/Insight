@@ -12,28 +12,6 @@ Full documentation for the project is available at [https://www.django-rest-fram
 
 ---
 
-# Funding
-
-REST framework is a *collaboratively funded project*. If you use
-REST framework commercially we strongly encourage you to invest in its
-continued development by [signing up for a paid plan][funding].
-
-The initial aim is to provide a single full-time position on REST framework.
-*Every single sign-up makes a significant impact towards making that possible.*
-
-[![][sentry-img]][sentry-url]
-[![][stream-img]][stream-url]
-[![][rollbar-img]][rollbar-url]
-[![][cadre-img]][cadre-url]
-[![][kloudless-img]][kloudless-url]
-[![][esg-img]][esg-url]
-[![][lightson-img]][lightson-url]
-[![][retool-img]][retool-url]
-
-Many thanks to all our [wonderful sponsors][sponsors], and in particular to our premium backers, [Sentry][sentry-url], [Stream][stream-url], [Rollbar][rollbar-url], [Cadre][cadre-url], [Kloudless][kloudless-url], [ESG][esg-url], [Lights On Software][lightson-url], and [Retool][retool-url].
-
----
-
 # Overview
 
 Django REST framework is a powerful and flexible toolkit for building Web APIs.
