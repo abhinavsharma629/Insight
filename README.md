@@ -28,7 +28,7 @@ There is a live example API for testing purposes, [available here][sandbox].
 
 **Below**: *Screenshot from the browsable API*
 
-![Screenshot][image]
+![Screenshot](/Screenshot%20(83).png)
 
 ----
 
