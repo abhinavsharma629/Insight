@@ -21,8 +21,8 @@ def add_data_or_400(request):
 
 def delete_data_or_404(request):
     params=request.data
-    if(Document.objects.filter(owner=request.user, id=params['data_id']).count()>0):
-        Document.objects.get(owner=request.user, id=params['data_id']).delete()
+    if(Document.objects.filter(owner=request.user, pk=params['data_id']).count()>0):
+        Document.objects.get(owner=request.user, pk=params['data_id']).delete()
         return status.HTTP_200_OK
     else:
         return status.HTTP_404_NOT_FOUND

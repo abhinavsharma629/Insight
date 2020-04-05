@@ -24,12 +24,12 @@ class Actions(APIView):
                 return Response({"data":serializer.data}, status=status.HTTP_200_OK)
             else:
                 return Response({'message':"Error"}, status=status.HTTP_404_NOT_FOUND)
-        elif('all' in request.GET):
+        elif('all' in request.GET and request.GET.get('all').lower()=="true"):
             obj=Document.objects.filter(owner=request.user)
             serializer=DocumentSerializer(obj, many=True)
             return Response({"data-list":serializer.data}, status=status.HTTP_200_OK)
         else:
-            return Response({'message':"Provide The Data Id"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message':"Please provide the Data Id!!"}, status=status.HTTP_400_BAD_REQUEST)
 
 
     permission_classes=(IsAuthenticated,)

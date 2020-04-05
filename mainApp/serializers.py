@@ -15,4 +15,4 @@ class DocumentSerializer(serializers.ModelSerializer):
 
     class Meta:
       model=Document  # what module you are going to serialize
-      fields= ('owner','created','type','source_type','source_id','input_meta_data')
+      fields= ('id','owner','created','type','source_type','source_id','input_meta_data')
