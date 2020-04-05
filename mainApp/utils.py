@@ -1,20 +1,25 @@
 from .models import Document
 from rest_framework import status
 from django.contrib.auth.models import User
-
+from .get_meta_data import create_input_meta_data
 
 def add_data_or_400(request):
     params=request.data
-    if('type' in params):
+    if('document' in request.FILES):
+        meta_data=create_input_meta_data(request)
+        print(meta_data)
+
         obj=Document.objects.create(
         owner=request.user,
-        type=params['type'] if 'source_type' in params else None,
-        source_type=params['source_type'] if 'source_type' in params else None,
-        source_id=params['source_id'] if 'source_type' in params else None,
-        input_meta_data=params['input_meta_data'] if 'source_type' in params else None
+        type=params['type'],
+        source_type=params['source_type'],
+        source_id=params['source_id'],
+        input_meta_data=meta_data
         )
+
         obj.save()
         return [obj,status.HTTP_201_CREATED]
+
     else:
         return [None, status.HTTP_400_BAD_REQUEST]
 

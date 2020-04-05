@@ -9,7 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Document
 from .utils import add_data_or_400, delete_data_or_404
 from .serializers import DocumentSerializer
-
+from rest_framework import generics
 
 class Actions(APIView):
 
@@ -33,10 +33,11 @@ class Actions(APIView):
 
 
     permission_classes=(IsAuthenticated,)
-    # SAVE Data
+    # SAVE Data by manually extracting details/ meta-data of the file uploaded
     def post(self, request, format=None):
         parser_classes = (JSONParser,)
         obj,status1=add_data_or_400(request)
+        print(obj, status1)
         if(status1==201):
             serializer= DocumentSerializer(obj)
             return Response({'message':"Successfully Saved Data", "details":serializer.data}, status=status.HTTP_201_CREATED)
@@ -53,3 +54,25 @@ class Actions(APIView):
             return Response({'message':"Successfully Deleted Data"}, status=status.HTTP_200_OK)
         else:
             return Response({'message':"Error"}, status=status.HTTP_404_NOT_FOUND)
+
+
+# Automatic Data Creation on the basis of data received by the api
+@api_view(['POST'])
+def DocumentViewSet(request):
+    permission_classes=(IsAuthenticated,)
+    params=request.data
+    try:
+        obj=Document.objects.create(
+        owner=request.user,
+        type=params['type'],
+        source_type=params['source_type'],
+        source_id=params['source_id'],
+        input_meta_data=params['input_meta_data']
+        )
+
+        obj.save()
+        serializer= DocumentSerializer(obj)
+        return Response({'message':"Successfully Saved Data", "details":serializer.data}, status=status.HTTP_201_CREATED)
+    except Exception as e:
+        return Response({'message':"Error", "error":str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    obj.save()
